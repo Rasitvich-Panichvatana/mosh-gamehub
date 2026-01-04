@@ -4,7 +4,7 @@ import { Text } from "@chakra-ui/react";
 
 interface Game {
   id: number;
-  name: string;
+  title: string;
 }
 
 interface FetchGamesResponse {
@@ -18,8 +18,8 @@ const GameGrid = () => {
 
   useEffect(() => {
     apiClient
-      .get<FetchGamesResponse>("/games")
-      .then((res) => setGames(res.data.results))
+      .get<Game[]>("/games")
+      .then((res) => setGames(res.data))
       .catch((err) => setError(err.message));
   });
 
@@ -28,7 +28,7 @@ const GameGrid = () => {
       {error && <Text>{error}</Text>}
       <ul>
         {games.map((game) => (
-          <li key={game.id}>{game.name}</li>
+          <li key={game.id}>{game.title}</li>
         ))}
       </ul>
     </>
