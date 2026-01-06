@@ -1,7 +1,20 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Grid,
+  GridItem,
+  Show,
+} from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
+
+import mainBG from "./assets/mainBG.jpg";
+import PlatformList from "./components/PlatformList";
 
 function App() {
   return (
@@ -15,15 +28,46 @@ function App() {
         lg: "200px 1fr",
       }}
     >
+      {/* NavBar */}
       <GridItem area="nav">
         <NavBar />
       </GridItem>
+
+      {/* Aside - Tags  */}
       <Show above="lg">
-        <GridItem area="aside" bg="gold" paddingX={3}>
-          <GenreList />
+        <GridItem area="aside" paddingX={5}>
+          <Accordion allowMultiple>
+            {/* Platform */}
+            <AccordionItem>
+              <AccordionButton>
+                <Box as="span" flex="1" textAlign="left" fontSize="lg">
+                  Platforms
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel pb={4}>
+                <PlatformList />
+              </AccordionPanel>
+            </AccordionItem>
+
+            {/* Tags (Genre) */}
+            <AccordionItem>
+              <AccordionButton>
+                <Box as="span" flex="1" textAlign="left" fontSize="lg">
+                  Tags
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel pb={4}>
+                <GenreList />
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
         </GridItem>
       </Show>
-      <GridItem area="main" bg="dodgerblue">
+
+      {/* Main - Game cards  */}
+      <GridItem area="main" bgImage={mainBG}>
         <GameGrid />
       </GridItem>
     </Grid>

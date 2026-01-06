@@ -1,11 +1,7 @@
-import { List, ListItem, Text } from "@chakra-ui/react";
-
-interface Props {
-  genres: string[];
-}
+import { Checkbox, CheckboxGroup, Stack } from "@chakra-ui/react";
 
 const GenreList = () => {
-  const genreslist = [
+  const genresList = [
     "mmorpg",
     "shooter",
     "strategy",
@@ -53,18 +49,18 @@ const GenreList = () => {
     "mmorts ",
   ];
   return (
-    <List>
-      {genreslist.map((genre) => (
-        <ListItem key={genre} paddingY="5px">
-          <Text fontSize="lg">{genre}</Text>
-        </ListItem>
-      ))}
-    </List>
+    <>
+      <CheckboxGroup>
+        <Stack>
+          {genresList.map((genre) => (
+            <Checkbox key={genre} value={genre}>
+              {genre}
+            </Checkbox>
+          ))}
+        </Stack>
+      </CheckboxGroup>
+    </>
   );
 };
 
 export default GenreList;
-
-/* 
-
-  */

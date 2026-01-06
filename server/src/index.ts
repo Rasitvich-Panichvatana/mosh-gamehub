@@ -8,6 +8,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 
+// games
 app.get("/api/games", async (_req, res) => {
   try {
     const response = await axios.get(process.env.API_URL!);
@@ -18,5 +19,6 @@ app.get("/api/games", async (_req, res) => {
   }
 });
 
+// Port
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
