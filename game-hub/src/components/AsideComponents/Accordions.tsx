@@ -12,7 +12,7 @@ import GenreList from "./GenreList";
 
 const Accordions = () => {
   return (
-    <Accordion>
+    <Accordion allowMultiple>
       {/* Platform */}
       <AccordionItem>
         <AccordionButton>
