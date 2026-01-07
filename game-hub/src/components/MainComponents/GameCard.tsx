@@ -1,5 +1,5 @@
 import React from "react";
-import { Game } from "../hooks/useGames";
+import { Game } from "../../hooks/useGames";
 import { Card, CardBody, Heading, HStack, Image, Text } from "@chakra-ui/react";
 import PlatformIconList from "./PlatformIconList";
 import Genre from "./Genre";
@@ -13,7 +13,7 @@ const GameCard = ({ game }: Props) => {
     <Card>
       <Image src={game.thumbnail} />
       <CardBody>
-        <Heading fontSize="2xl">{game.title}</Heading>
+        <Heading fontSize="xl">{game.title}</Heading>
         <HStack justifyContent="space-between">
           <PlatformIconList platforms={game.platform} />
           <Genre genre={game.genre} />
