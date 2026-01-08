@@ -7,36 +7,22 @@ import {
   Box,
 } from "@chakra-ui/react";
 
-import PlatformList from "./PlatformList";
-import GenreList from "./GenreList";
+interface Props {
+  title: string;
+  checkbox: JSX.Element;
+}
 
-const Accordions = () => {
+const Accordions = ({ title, checkbox }: Props) => {
   return (
     <Accordion allowMultiple>
-      {/* Platform */}
       <AccordionItem>
         <AccordionButton>
           <Box as="span" flex="1" textAlign="left" fontSize="lg">
-            Platforms
+            {title}
           </Box>
           <AccordionIcon />
         </AccordionButton>
-        <AccordionPanel pb={4}>
-          <PlatformList />
-        </AccordionPanel>
-      </AccordionItem>
-
-      {/* Tags (Genre) */}
-      <AccordionItem>
-        <AccordionButton>
-          <Box as="span" flex="1" textAlign="left" fontSize="lg">
-            Tags
-          </Box>
-          <AccordionIcon />
-        </AccordionButton>
-        <AccordionPanel pb={4}>
-          <GenreList />
-        </AccordionPanel>
+        <AccordionPanel pb={4}>{checkbox}</AccordionPanel>
       </AccordionItem>
     </Accordion>
   );

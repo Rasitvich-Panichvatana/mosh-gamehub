@@ -10,7 +10,11 @@ export interface Game {
   genre: string;
 }
 
-const useGames = () => {
+interface Props {
+  selectedPlatform: string | null;
+}
+
+const useGames = (selectedPlatform: Props) => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);

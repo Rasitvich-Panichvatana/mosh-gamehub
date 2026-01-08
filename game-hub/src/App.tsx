@@ -4,8 +4,13 @@ import GameGrid from "./components/MainComponents/GameGrid";
 
 import mainBG from "./assets/mainBG.jpg";
 import Accordions from "./components/AsideComponents/Accordions";
+import { useState } from "react";
+import PlatformList from "./components/AsideComponents/PlatformList";
+import GenreList from "./components/AsideComponents/GenreList";
 
 function App() {
+  const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null);
+
   return (
     <Grid
       templateAreas={{
@@ -25,13 +30,22 @@ function App() {
       {/* Aside */}
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
-          <Accordions />
+          <Accordions
+            title="Platform"
+            checkbox={
+              <PlatformList
+                onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+                selectedPlatform={selectedPlatform}
+              />
+            }
+          />
+          <Accordions title="Tags" checkbox={<GenreList />} />
         </GridItem>
       </Show>
 
       {/* Main - Game cards  */}
       <GridItem area="main" bgImage={mainBG}>
-        <GameGrid />
+        <GameGrid selectedPlatform={selectedPlatform} />
       </GridItem>
     </Grid>
   );
