@@ -32,6 +32,6 @@ This Repository is for learning 'React 18 for Beginners' course by Mosh Hamedani
    - npm run dev
    - link: http://localhost:5173/
 
-# Note for Developer
+## Note for Developer
 
 - Accordions are not smooth because App re-render everything check-box change

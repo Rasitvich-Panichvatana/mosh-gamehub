@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
+import { withDefaultColorScheme } from "@chakra-ui/react";
 
 export interface Game {
   id: number;
@@ -14,7 +15,7 @@ interface Props {
   selectedPlatform: string | null;
 }
 
-const useGames = (selectedPlatform: Props) => {
+const useGames = ({ selectedPlatform }: Props) => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -23,8 +24,20 @@ const useGames = (selectedPlatform: Props) => {
     const controller = new AbortController();
 
     setLoading(true);
+
+    let platform = "";
+    let tags = "";
+    let sort = "";
+    let url = "/games";
+
+    console.log(selectedPlatform);
+
+    if (selectedPlatform) {
+      platform = "?platform=" + selectedPlatform;
+    }
+
     apiClient
-      .get<Game[]>("/games", { signal: controller.signal })
+      .get<Game[]>(url + tags + platform + sort, { signal: controller.signal })
       .then((res) => {
         setGames(res.data);
         setLoading(false);
