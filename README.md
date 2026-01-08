@@ -31,3 +31,7 @@ This Repository is for learning 'React 18 for Beginners' course by Mosh Hamedani
    - npm install (only for first time to install vite locally)
    - npm run dev
    - link: http://localhost:5173/
+
+# Note for Developer
+
+- Accordions are not smooth because App re-render everything check-box change
