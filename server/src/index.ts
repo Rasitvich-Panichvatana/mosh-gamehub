@@ -16,20 +16,29 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-// API endpoint
+// Get data from Database (PostgreSQL)
 app.get("/api/games", async (_req, res) => {
   try {
-    // 1️⃣ Try to fetch data from external API
+    const { rows } = await pool.query(
+      "SELECT * FROM games ORDER BY updated_at DESC"
+    );
+    return res.json(rows);
+  } catch (err) {
+    console.error("Database read failed:", err);
+    return res.status(500).json({ error: "Database error" });
+  }
+});
+
+// Update data from External API
+app.get("/api/update-games", async (_req, res) => {
+  try {
     const response = await axios.get(process.env.API_URL!);
     const games = response.data;
 
-    // 2️⃣ Save to PostgreSQL (cache)
     const client = await pool.connect();
     try {
+      //initiates a transaction block ( Commit / Rollback )
       await client.query("BEGIN");
-
-      // optional: clear old data
-      await client.query("DELETE FROM games");
 
       for (const g of games) {
         await client.query(
@@ -45,36 +54,21 @@ app.get("/api/games", async (_req, res) => {
         );
       }
 
+      // Commit change
       await client.query("COMMIT");
       client.release();
+
+      return res.json({ message: "Games updated successfully" });
     } catch (err) {
+      // Undo if error
       await client.query("ROLLBACK");
       client.release();
       console.error("Database update failed:", err);
+      return res.status(500).json({ error: "Database update failed" });
     }
-
-    // 3️⃣ Return fresh API data
-    return res.json(games);
   } catch (apiError) {
-    console.error(
-      "API request failed, using cached data:",
-      (apiError as Error).message
-    );
-
-    // 4️⃣ Load cached data if API fails
-    try {
-      const { rows } = await pool.query(
-        "SELECT * FROM games ORDER BY updated_at DESC"
-      );
-      if (rows.length > 0) {
-        return res.json(rows);
-      } else {
-        return res.status(500).json({ error: "No cached data available" });
-      }
-    } catch (dbError) {
-      console.error("Database read failed:", dbError);
-      return res.status(500).json({ error: "Database error" });
-    }
+    console.error("API request failed:", (apiError as Error).message);
+    return res.status(500).json({ error: "API fetch failed" });
   }
 });
 
