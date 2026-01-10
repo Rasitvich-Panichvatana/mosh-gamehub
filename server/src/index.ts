@@ -11,7 +11,7 @@ const { Pool } = pkg;
 const app = express();
 app.use(cors());
 
-// connect to PostgreSQL
+// Connect to PostgreSQL
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
@@ -40,7 +40,7 @@ app.get("/api/update-games", async (_req, res) => {
       //initiates a transaction block ( Commit / Rollback )
       await client.query("BEGIN");
 
-      for (const g of games) {
+      for (const game of games) {
         await client.query(
           `INSERT INTO games (game_id, title, genre, platform, thumbnail, updated_at)
            VALUES ($1, $2, $3, $4, $5, NOW())
@@ -50,7 +50,7 @@ app.get("/api/update-games", async (_req, res) => {
                platform = EXCLUDED.platform,
                thumbnail = EXCLUDED.thumbnail,
                updated_at = NOW()`,
-          [g.id, g.title, g.genre, g.platform, g.thumbnail]
+          [game.id, game.title, game.genre, game.platform, game.thumbnail]
         );
       }
 
@@ -74,4 +74,4 @@ app.get("/api/update-games", async (_req, res) => {
 
 // Server port
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(` Server running on port ${PORT}`));
