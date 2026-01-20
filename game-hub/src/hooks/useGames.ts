@@ -21,6 +21,7 @@ const useGames = ({
   selectedPlatforms = [],
   selectedGenres = [],
   searchText,
+  // will do page feature later
   page = 1,
 }: Props) => {
   const [games, setGames] = useState<Game[]>([]);
@@ -31,10 +32,14 @@ const useGames = ({
     const controller = new AbortController();
     setLoading(true);
 
+    // Keys must be string and Value can be any (in this case we have string[])
+    // Can use type/interface object instead but i want to learn about Record
+    // if use type/interface object instead we can manual eg. platform? = string[]; ...
     const params: Record<string, any> = {};
     if (selectedPlatforms.length > 0) params.platform = selectedPlatforms;
     if (selectedGenres.length > 0) params.genre = selectedGenres;
     if (searchText) params.search = searchText;
+    // will do page feature later
     params.page = String(page);
 
     apiClient
@@ -42,7 +47,7 @@ const useGames = ({
         params,
         signal: controller.signal,
         paramsSerializer: {
-          indexes: null, // ลบ [] ออก
+          indexes: null, // remove [] from request like platform[] -> platform
         },
       })
       .then((res) => {
@@ -55,11 +60,11 @@ const useGames = ({
         setLoading(false);
       });
 
-    return () => controller.abort();
+    return () => controller.abort(); // Abort request to prevent race condition
   }, [
     searchText,
     page,
-    JSON.stringify(selectedPlatforms),
+    JSON.stringify(selectedPlatforms), // JSON.stringify to turn object to string
     JSON.stringify(selectedGenres),
   ]);
 
