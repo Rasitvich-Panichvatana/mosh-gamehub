@@ -16,7 +16,7 @@ interface Props {
 const SearchBar = ({ searchText, onSearch }: Props) => {
   return (
     <>
-      <Box marginX="20px" marginTop="20px">
+      <Box>
         <InputGroup>
           <InputLeftElement pointerEvents="none">
             <SearchIcon />

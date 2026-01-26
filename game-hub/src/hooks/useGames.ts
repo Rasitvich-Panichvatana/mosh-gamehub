@@ -27,6 +27,7 @@ const useGames = ({
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(1);
+  const [total, setTotal] = useState(1);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -56,6 +57,7 @@ const useGames = ({
       .then((res) => {
         setGames(res.data.results);
         setTotalPages(res.data.totalPages);
+        setTotal(res.data.total);
         setLoading(false);
       })
       .catch((err) => {
@@ -76,7 +78,7 @@ const useGames = ({
   console.log(selectedGenres);
   console.log(selectedPlatforms);
 
-  return { games, error, isLoading, totalPages };
+  return { games, error, isLoading, totalPages, total };
 };
 
 export default useGames;

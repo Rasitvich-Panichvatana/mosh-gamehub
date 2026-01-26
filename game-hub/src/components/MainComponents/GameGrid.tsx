@@ -8,10 +8,11 @@ import { useEffect } from "react";
 interface Props {
   selectedPlatforms: string[];
   selectedGenres: string[];
+  searchText: string;
   page: number;
   onTotalPages: (pages: number) => void;
   onPageChange: (page: number) => void;
-  searchText: string;
+  onTotal: (total: number) => void;
 }
 
 const GameGrid = ({
@@ -21,8 +22,9 @@ const GameGrid = ({
   onTotalPages,
   onPageChange,
   searchText,
+  onTotal,
 }: Props) => {
-  const { games, error, isLoading, totalPages } = useGames({
+  const { games, error, isLoading, totalPages, total } = useGames({
     selectedPlatforms,
     selectedGenres,
     searchText,
@@ -32,6 +34,10 @@ const GameGrid = ({
   useEffect(() => {
     onTotalPages(totalPages);
   }, [totalPages]);
+
+  useEffect(() => {
+    onTotal(total);
+  }, [total]);
 
   // Cap Page to not exceed Total Page
   useEffect(() => {
@@ -44,13 +50,13 @@ const GameGrid = ({
 
   return (
     <>
-      <Box minH="97vh">
+      <Box minH="96vh">
         {error && <Text>{error}</Text>}
         <SimpleGrid
           columns={{ sm: 1, md: 3, lg: 3, xl: 5 }}
           paddingX="2vw"
-          paddingTop="30px"
-          paddingBottom="20px"
+          paddingTop="22px"
+          paddingBottom="12px"
           spacing={5}
         >
           {isLoading &&

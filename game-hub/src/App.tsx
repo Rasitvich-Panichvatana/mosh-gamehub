@@ -1,4 +1,4 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem, Heading, HStack, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavComponents/NavBar";
 import GameGrid from "./components/MainComponents/GameGrid";
 
@@ -17,6 +17,7 @@ function App() {
   const [selectedPage, setSelectedPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [searchText, setSearchText] = useState<string>("");
+  const [total, setTotal] = useState<number>(0);
 
   const onSelectPlatforms = useCallback((platforms: string[]) => {
     setSelectedPlatforms(platforms);
@@ -33,7 +34,8 @@ function App() {
     selectedGenres,
     selectedPage,
     totalPages,
-    searchText
+    searchText,
+    total
   );
 
   return (
@@ -78,7 +80,17 @@ function App() {
 
       {/* Main - Game cards  */}
       <GridItem area="main" bgImage={mainBG}>
-        <SearchBar searchText={searchText} onSearch={setSearchText} />
+        <HStack
+          marginX="2vw"
+          marginTop="20px"
+          marginBottom="0px"
+          justify="space-between"
+        >
+          <SearchBar searchText={searchText} onSearch={setSearchText} />
+          <Heading as="h2" size="lg" fontWeight="semibold">
+            {total} Result Found
+          </Heading>
+        </HStack>
         <GameGrid
           selectedPlatforms={selectedPlatforms}
           selectedGenres={selectedGenres}
@@ -86,6 +98,7 @@ function App() {
           onTotalPages={setTotalPages}
           onPageChange={setSelectedPage}
           searchText={searchText}
+          onTotal={setTotal}
         />
         <PageSelector
           selectedPage={selectedPage}
