@@ -41,8 +41,15 @@ const GameGrid = ({
 
   // Cap Page to not exceed Total Page
   useEffect(() => {
-    if (page > totalPages) {
+    if (page > totalPages && totalPages != 0) {
       onPageChange(totalPages);
+    }
+  }, [totalPages]);
+
+  // Fix Page > 1 when total = 0
+  useEffect(() => {
+    if (totalPages == 0) {
+      onPageChange(1);
     }
   }, [totalPages]);
 

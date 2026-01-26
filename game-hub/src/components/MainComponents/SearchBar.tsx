@@ -17,7 +17,7 @@ const SearchBar = ({ searchText, onSearch }: Props) => {
   return (
     <>
       <Box>
-        <InputGroup>
+        <InputGroup width="300px">
           <InputLeftElement pointerEvents="none">
             <SearchIcon />
           </InputLeftElement>

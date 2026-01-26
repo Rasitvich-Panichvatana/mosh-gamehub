@@ -149,7 +149,7 @@ const PageSelector = ({ selectedPage, totalPages, onPageChange }: Props) => {
       <Button
         rightIcon={<ChevronRightIcon />}
         size="md"
-        isDisabled={selectedPage === totalPages}
+        isDisabled={selectedPage >= totalPages}
         onClick={() => onPageChange(selectedPage + 1)}
       >
         Next
