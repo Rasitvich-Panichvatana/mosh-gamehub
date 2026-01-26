@@ -41,7 +41,7 @@ const GameGrid = ({
 
   return (
     <>
-      <Box minH="95vh">
+      <Box minH="97vh">
         {error && <Text>{error}</Text>}
         <SimpleGrid
           columns={{ sm: 1, md: 3, lg: 3, xl: 5 }}
