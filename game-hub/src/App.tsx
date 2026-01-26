@@ -86,7 +86,9 @@ function App() {
           marginBottom="0px"
           justify="space-between"
         >
-          <SearchBar searchText={searchText} onSearch={setSearchText} />
+          <HStack>
+            <SearchBar searchText={searchText} onSearch={setSearchText} />
+          </HStack>
           <Heading as="h2" size="lg" fontWeight="semibold">
             {total} Result Found
           </Heading>
