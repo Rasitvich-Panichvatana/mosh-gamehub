@@ -11,6 +11,7 @@ interface Props {
   selectedGenres: string[];
   page: number;
   onTotalPages: (pages: number) => void;
+  onPageChange: (page: number) => void;
 }
 
 const GameGrid = ({
@@ -18,6 +19,7 @@ const GameGrid = ({
   selectedGenres,
   page,
   onTotalPages,
+  onPageChange,
 }: Props) => {
   const { games, error, isLoading, totalPages } = useGames({
     selectedPlatforms,
@@ -29,15 +31,22 @@ const GameGrid = ({
     onTotalPages(totalPages);
   }, [totalPages]);
 
+  useEffect(() => {
+    if (page > totalPages) {
+      onPageChange(totalPages);
+    }
+  }, [totalPages]);
+
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   return (
     <>
-      <Box minH="100vh">
+      <Box minH="97vh">
         {error && <Text>{error}</Text>}
         <SimpleGrid
           columns={{ sm: 1, md: 3, lg: 3, xl: 5 }}
-          padding="2vw"
+          paddingX="2vw"
+          paddingTop="2vw"
           spacing={5}
         >
           {isLoading &&

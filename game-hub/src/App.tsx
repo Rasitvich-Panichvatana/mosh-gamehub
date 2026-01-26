@@ -80,6 +80,7 @@ function App() {
           selectedGenres={selectedGenres}
           page={selectedPage}
           onTotalPages={setTotalPages}
+          onPageChange={setSelectedPage}
         />
         <PageSelector
           selectedPage={selectedPage}

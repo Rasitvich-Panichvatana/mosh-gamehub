@@ -9,7 +9,7 @@ interface Props {
 
 const ExpandableText = ({
   children,
-  maxChars = 25,
+  maxChars = 23,
   isHover = false,
 }: Props) => {
   const [isExpanded, setExpanded] = useState(false);
