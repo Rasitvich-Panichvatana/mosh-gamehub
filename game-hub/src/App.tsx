@@ -91,7 +91,11 @@ function App() {
         >
           <HStack>
             <SearchBar searchText={searchText} onSearch={setSearchText} />
-            <Sort selectedSort={selectedSort} onSort={setSelectedSort} />
+            <Sort
+              selectedSort={selectedSort}
+              onSort={setSelectedSort}
+              setSelectedPage={setSelectedPage}
+            />
           </HStack>
           <Heading as="h2" size="lg" fontWeight="semibold">
             {total} Result Found
