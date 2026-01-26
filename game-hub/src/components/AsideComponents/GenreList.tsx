@@ -39,7 +39,7 @@ const GenreList = ({ selectedGenres, onSelectGenres }: Props) => {
       >
         <Stack>
           {genresList.map((genre) => (
-            <Checkbox key={genre} value={genre}>
+            <Checkbox key={genre} value={genre} colorScheme="green">
               {genre}
             </Checkbox>
           ))}

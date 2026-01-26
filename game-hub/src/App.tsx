@@ -30,16 +30,16 @@ function App() {
   }, []);
 
   // !!Debug don't forget to remove!!
-  console.log(
-    "App rendered",
-    selectedPlatforms,
-    selectedGenres,
-    selectedPage,
-    totalPages,
-    searchText,
-    total,
-    selectedSort
-  );
+  //console.log(
+  //  "App rendered",
+  // selectedPlatforms,
+  //selectedGenres,
+  //selectedPage,
+  //totalPages,
+  //searchText,
+  //total,
+  //selectedSort
+  //);
 
   return (
     <Grid
@@ -59,7 +59,7 @@ function App() {
 
       {/* Aside */}
       <Show above="lg">
-        <GridItem area="aside" paddingX={5}>
+        <GridItem area="aside" paddingX={5} bg="gray.800" paddingTop="16px">
           <Accordions
             title="Platform"
             checkbox={

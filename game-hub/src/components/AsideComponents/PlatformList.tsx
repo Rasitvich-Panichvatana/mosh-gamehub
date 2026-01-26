@@ -19,7 +19,7 @@ const PlatformList = ({ selectedPlatforms, onSelectPlatforms }: Props) => {
     >
       <Stack>
         {platformList.map((platform) => (
-          <Checkbox key={platform} value={platform}>
+          <Checkbox key={platform} value={platform} colorScheme="green">
             {platform}
           </Checkbox>
         ))}

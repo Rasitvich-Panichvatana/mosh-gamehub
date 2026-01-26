@@ -93,7 +93,7 @@ const PageSelector = ({ selectedPage, totalPages, onPageChange }: Props) => {
           size="md"
           width="2.5vw"
           variant="solid"
-          colorScheme="teal"
+          colorScheme="green"
           onClick={() => onPageChange(selectedPage)}
         >
           {selectedPage}
