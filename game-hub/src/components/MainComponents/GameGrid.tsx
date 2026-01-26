@@ -4,7 +4,6 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 import { useEffect } from "react";
-import { vh } from "framer-motion";
 
 interface Props {
   selectedPlatforms: string[];
@@ -12,6 +11,7 @@ interface Props {
   page: number;
   onTotalPages: (pages: number) => void;
   onPageChange: (page: number) => void;
+  searchText: string;
 }
 
 const GameGrid = ({
@@ -20,10 +20,12 @@ const GameGrid = ({
   page,
   onTotalPages,
   onPageChange,
+  searchText,
 }: Props) => {
   const { games, error, isLoading, totalPages } = useGames({
     selectedPlatforms,
     selectedGenres,
+    searchText,
     page,
   });
 
@@ -31,6 +33,7 @@ const GameGrid = ({
     onTotalPages(totalPages);
   }, [totalPages]);
 
+  // Cap Page to not exceed Total Page
   useEffect(() => {
     if (page > totalPages) {
       onPageChange(totalPages);

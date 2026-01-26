@@ -56,9 +56,11 @@ app.get("/api/games", async (req, res) => {
       conditions.push(`(${likeClauses.join(" AND ")})`);
     }
 
+    // Trim search
     if (typeof search === "string" && search.trim() !== "") {
       params.push(`%${search.trim()}%`);
       conditions.push(
+        // return result of search tilte or genre
         `(title ILIKE $${params.length} OR genre ILIKE $${params.length})`
       );
     }

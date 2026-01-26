@@ -85,6 +85,7 @@ function App() {
           page={selectedPage}
           onTotalPages={setTotalPages}
           onPageChange={setSelectedPage}
+          searchText={searchText}
         />
         <PageSelector
           selectedPage={selectedPage}
