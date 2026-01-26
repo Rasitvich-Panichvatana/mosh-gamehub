@@ -1,4 +1,5 @@
 import { Button, HStack, IconButton, Spacer } from "@chakra-ui/react";
+import { ChevronRightIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 
 interface Props {
   selectedPage: number;
@@ -19,6 +20,7 @@ const PageSelector = ({ selectedPage, totalPages, onPageChange }: Props) => {
       bgColor="gray.900"
     >
       <Button
+        leftIcon={<ChevronLeftIcon />}
         size="md"
         isDisabled={selectedPage === 1}
         onClick={() => onPageChange(selectedPage - 1)}
@@ -145,6 +147,7 @@ const PageSelector = ({ selectedPage, totalPages, onPageChange }: Props) => {
       <Spacer />
 
       <Button
+        rightIcon={<ChevronRightIcon />}
         size="md"
         isDisabled={selectedPage === totalPages}
         onClick={() => onPageChange(selectedPage + 1)}
