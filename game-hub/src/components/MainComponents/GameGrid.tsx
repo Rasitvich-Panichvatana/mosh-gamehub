@@ -8,16 +8,20 @@ import { useEffect } from "react";
 interface Props {
   selectedPlatforms: string[];
   selectedGenres: string[];
+  sort: string;
   searchText: string;
   page: number;
   onTotalPages: (pages: number) => void;
   onPageChange: (page: number) => void;
   onTotal: (total: number) => void;
+  onSort: (sort: string) => void;
 }
 
 const GameGrid = ({
   selectedPlatforms,
   selectedGenres,
+  sort,
+  onSort,
   page,
   onTotalPages,
   onPageChange,
@@ -29,7 +33,12 @@ const GameGrid = ({
     selectedGenres,
     searchText,
     page,
+    sort,
   });
+
+  useEffect(() => {
+    onSort(sort);
+  }, [sort]);
 
   useEffect(() => {
     onTotalPages(totalPages);

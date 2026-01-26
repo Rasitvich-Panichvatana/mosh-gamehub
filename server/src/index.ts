@@ -20,7 +20,7 @@ const pool = new Pool({
 // Get data from Database (PostgreSQL)
 app.get("/api/games", async (req, res) => {
   try {
-    const { genre, platform, search, page } = req.query;
+    const { genre, platform, search, page, sort } = req.query;
 
     const PAGE_SIZE = 15;
     const currentPage = parseInt(page as string) || 1;
@@ -71,7 +71,12 @@ app.get("/api/games", async (req, res) => {
     }
 
     // Add ordering, pagination
-    query += " ORDER BY title ASC";
+    if (sort === "title DESC") {
+      query += " ORDER BY title DESC";
+    }
+    if (sort === "title ASC" || !sort) {
+      query += " ORDER BY title ASC";
+    }
     params.push(PAGE_SIZE, offset);
     query += ` LIMIT $${params.length - 1} OFFSET $${params.length}`;
 

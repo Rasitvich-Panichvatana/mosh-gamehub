@@ -10,6 +10,7 @@ import PageSelector from "./components/MainComponents/PageSelector";
 
 import mainBG from "./assets/mainBG.jpg";
 import SearchBar from "./components/MainComponents/SearchBar";
+import Sort from "./components/MainComponents/Sort";
 
 function App() {
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([]);
@@ -18,6 +19,7 @@ function App() {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [searchText, setSearchText] = useState<string>("");
   const [total, setTotal] = useState<number>(0);
+  const [selectedSort, setSelectedSort] = useState<string>("");
 
   const onSelectPlatforms = useCallback((platforms: string[]) => {
     setSelectedPlatforms(platforms);
@@ -35,7 +37,8 @@ function App() {
     selectedPage,
     totalPages,
     searchText,
-    total
+    total,
+    selectedSort
   );
 
   return (
@@ -88,6 +91,7 @@ function App() {
         >
           <HStack>
             <SearchBar searchText={searchText} onSearch={setSearchText} />
+            <Sort selectedSort={selectedSort} onSort={setSelectedSort} />
           </HStack>
           <Heading as="h2" size="lg" fontWeight="semibold">
             {total} Result Found
@@ -96,6 +100,8 @@ function App() {
         <GameGrid
           selectedPlatforms={selectedPlatforms}
           selectedGenres={selectedGenres}
+          sort={selectedSort}
+          onSort={setSelectedSort}
           page={selectedPage}
           onTotalPages={setTotalPages}
           onPageChange={setSelectedPage}

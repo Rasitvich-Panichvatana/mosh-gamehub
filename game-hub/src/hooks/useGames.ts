@@ -15,6 +15,7 @@ interface Props {
   selectedGenres?: string[];
   searchText?: string;
   page?: number;
+  sort?: string;
 }
 
 const useGames = ({
@@ -22,6 +23,7 @@ const useGames = ({
   selectedGenres = [],
   searchText,
   page = 1,
+  sort,
 }: Props) => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
@@ -43,7 +45,7 @@ const useGames = ({
     if (selectedPlatforms.length > 0) params.platform = selectedPlatforms;
     if (selectedGenres.length > 0) params.genre = selectedGenres;
     if (searchText) params.search = searchText;
-    // will do page feature later
+    if (sort) params.sort = sort;
     params.page = String(page);
 
     apiClient
@@ -70,6 +72,7 @@ const useGames = ({
   }, [
     searchText,
     page,
+    sort,
     JSON.stringify(selectedPlatforms), // JSON.stringify to turn object to string
     JSON.stringify(selectedGenres),
   ]);
