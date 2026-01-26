@@ -21,7 +21,7 @@ app.get("/api/games", async (req, res) => {
   try {
     const { genre, platform, search, page } = req.query;
 
-    const PAGE_SIZE = 20;
+    const PAGE_SIZE = 25;
     const currentPage = parseInt(page as string) || 1;
     const offset = (currentPage - 1) * PAGE_SIZE;
 
