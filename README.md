@@ -32,7 +32,7 @@ Game Discovery Website
 1. Create .env file in server folder (use .env.example as reference)
    - Recomended PORT=3000
    - API_URL=https://www.freetogame.com/api/games
-   - DATABASE_URL = Your PostgreSQL ( Can be Self-Hosted )
+   - DATABASE_URL = Your PostgreSQL ( Can be Local-Host )
    - For more API information https://www.freetogame.com/api-doc
 2. Run Backend (Port 3000)
    - cd server
