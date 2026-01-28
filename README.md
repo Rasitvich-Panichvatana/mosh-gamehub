@@ -2,9 +2,9 @@
 
 Game Discovery Website
 
-![Website Image](GameHub.png)
+![Website Image](README-assets/GameHub.png)
 
-![Pagination Image](Page.jpeg)
+![Pagination Image](README-assets/Page.jpeg)
 
 - Discover list of free games, over 422 games
 - User can Filter, sort, search games through the website
