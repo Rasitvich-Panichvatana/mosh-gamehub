@@ -3,7 +3,6 @@
 Game Discovery Website
 
 ![Website Image](README-assets/GameHub.png)
-
 ![Pagination Image](README-assets/Page.jpeg)
 
 - Discover list of 422 free games
@@ -15,7 +14,7 @@ Game Discovery Website
 - Responsive and Smooth UI
 
 ![Pagination Video](README-assets/Pagination.gif)
-[Full Video](https://github.com/user-attachments/assets/42780419-953d-4cba-aa0d-2d1f1715c9c0)
+[Pagination Video](https://github.com/user-attachments/assets/42780419-953d-4cba-aa0d-2d1f1715c9c0)
 
 
 ## Tools
